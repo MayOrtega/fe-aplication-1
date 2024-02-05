@@ -14,6 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/fe-aplication-1",
+
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [

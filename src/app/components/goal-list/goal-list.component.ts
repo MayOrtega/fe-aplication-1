@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GoalService } from 'src/app/services/goal.service';  
 import { Goals } from 'src/app/models/Goals';
 
@@ -7,28 +7,39 @@ import { Goals } from 'src/app/models/Goals';
   templateUrl: './goal-list.component.html',
   styleUrls: ['./goal-list.component.css']
 })
-  export class GoalListComponent {
-      goals: Goals[] = [];
+export class GoalListComponent implements OnInit {
+  goals: Goals[] = [];
 
-      constructor(private goalService: GoalService){}
+  
+  constructor(private goalService: GoalService) {}
 
-      ngOnInit():void{
-        this.loadGoals();
+  ngOnInit(): void {
+    this.loadGoals();
+  }
+
+  private loadGoals() {
+    this.goalService.getAllGoals().subscribe(
+      (goals) => {
+        this.goals = goals;
+        this.loadTasksForGoals();  // Llamar a loadTasksForGoals después de cargar las metas
+      },
+      (error) => {
+        console.error('Error al cargar Objetivo: ', error);
       }
+    );
+  }
 
-     loadGoals(){
-      this.goalService.getAllGoals().subscribe(
-        (data) => {
-          this.goals = data;
+  private loadTasksForGoals() {
+    // Iterar sobre las metas y cargar las tareas asociadas a cada una
+    this.goals.forEach(goal => {
+      this.goalService.getTasksForGoal(goal.id).subscribe(
+        (tasks) => {
+          goal.tasks = tasks;
         },
         (error) => {
-          console.error('Error al cargar Objetivo: ',error);
+          console.error(`Error al cargar las tareas para la meta ${goal.id}:`, error);
         }
-      )
-};
-
-createNewGoal() {
-  this.loadGoals(); // Actualiza la lista después de crear una nueva meta
-}
-
+      );
+    });
+  }
 }
