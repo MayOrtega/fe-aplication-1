@@ -21,7 +21,7 @@ export class GoalListComponent implements OnInit {
     this.goalService.getAllGoals().subscribe(
       (goals) => {
         this.goals = goals;
-        this.loadTasksForGoals();  // Llamar a loadTasksForGoals después de cargar las metas
+        this.loadTasksForGoals();
       },
       (error) => {
         console.error('Error al cargar Objetivo: ', error);
