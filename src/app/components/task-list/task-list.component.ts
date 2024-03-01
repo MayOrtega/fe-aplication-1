@@ -15,7 +15,7 @@ export class TaskListComponent {
 
   ngOnInit(): void {
     this.loadTasks();
-  }
+  } 
 
   loadTasks() {
     this.taskService.getAllTasks().subscribe(
@@ -29,8 +29,10 @@ export class TaskListComponent {
   };
 
   createNewTask() {
-    this.loadTasks(); // Actualiza la lista después de crear una nueva meta
+    this.loadTasks(); 
   }
+
+  
 
 }
 

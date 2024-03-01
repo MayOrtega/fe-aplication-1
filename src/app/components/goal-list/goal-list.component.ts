@@ -30,7 +30,6 @@ export class GoalListComponent implements OnInit {
   }
 
   private loadTasksForGoals() {
-    // Iterar sobre las metas y cargar las tareas asociadas a cada una
     this.goals.forEach(goal => {
       this.goalService.getTasksForGoal(goal.id).subscribe(
         (tasks) => {

@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatGridListModule
 
   ],
   providers: [],
